@@ -120,4 +120,4 @@ GitHub: https://github.com/AIPILOT-AIPI/Translate
 
 ---
 
-⭐️ Eğer bu proje işinize yaradıysa, Star vermeyi unutmayın! ⭐️
+⭐️ Eğer bu proje işinize yaradıysa, Star vermeyi unutmayın! ⭐️ 
