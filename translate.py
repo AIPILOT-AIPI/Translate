@@ -407,8 +407,11 @@ class TranslateApp:
         self.popup_window.title("Çeviri")  # Başlık ekleyerek çerçeveyi gösterelim
         self.popup_window.attributes('-topmost', True)  # Her zaman üstte göster
         
-        # Pencere ikonu ayarla
+        # Pencere ikonu ayarla - SORUNU ÇÖZMEK İÇİN DEĞİŞTİRİLDİ
         self.set_window_icon(self.popup_window)
+        
+        # İkon referansını güçlü şekilde tut
+        self.popup_window.after(100, lambda: self.set_window_icon(self.popup_window))
         
         # Pencerenin konumunu ve boyutunu ayarla
         self.popup_window.geometry(f"{self.popup_size['width']}x{self.popup_size['height']}+{self.popup_position['x']}+{self.popup_position['y']}")
@@ -584,6 +587,8 @@ class TranslateApp:
                         # Windows'ta ico dosyası doğrudan kullanılabilir
                         if icon_path.lower().endswith('.ico'):
                             window.iconbitmap(icon_path)
+                            # _icon_reference değişkenini pencerenin kendisine atayarak referansı koruyun
+                            window._icon_reference = icon_path
                             print(f"Pencere ikonu ayarlandı (ICO): {icon_path}")
                             icon_found = True
                             break
@@ -593,17 +598,23 @@ class TranslateApp:
                             from PIL import ImageTk
                             icon_image = Image.open(icon_path)
                             photo = ImageTk.PhotoImage(icon_image)
-                            window.iconphoto(True, photo)
-                            # Referansı tut, aksi halde garbage collector tarafından silinebilir
-                            window._icon_photo = photo
+                            window.iconphoto(False, photo)  # False parametresi ile tüm pencerelere uygulanmaz
+                            # Referansı güçlü bir şekilde tut
+                            window._icon_photo = photo  # Bu referansı pencereye atayarak koruyoruz
                             print(f"Pencere ikonu ayarlandı (PNG): {icon_path}")
                             icon_found = True
                             break
                     except Exception as e:
                         print(f"İkon yükleme hatası ({icon_path}): {e}")
             
+            # İkon bulunamadıysa, yeni bir ikon oluştur ve kullan
             if not icon_found:
-                print("Hiçbir ikon dosyası bulunamadı veya yüklenemedi.")
+                print("Hiçbir ikon dosyası bulunamadı, programatik ikon oluşturuluyor...")
+                icon_image = self.create_icon_image()
+                photo = ImageTk.PhotoImage(icon_image)
+                window.iconphoto(False, photo)
+                window._icon_photo = photo
+                print("Programatik ikon ayarlandı")
         
         except Exception as e:
             print(f"Pencere ikonu ayarlanamadı: {e}")
