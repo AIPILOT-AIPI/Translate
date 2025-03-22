@@ -16,6 +16,35 @@ Bu uygulama, kopyaladığınız metinleri hızlıca farklı dillere çevirmenizi
 - 💼 **Sistem Tepsisi Entegrasyonu**: Bilgisayar kaynaklarını az kullanır
 - 📋 **Kolay Kopyalama**: Çeviriyi tek tıkla kopyalayabilme
 
+## Clipboard Translator - Kolay Kurulum Seçenekleri
+
+Kurulum Seçenekleri
+1. Exe Dosyası ile Kurulum (Python Gerektirmez)
+Uygulamayı Python kurulumu yapmadan direk kullanmak için:
+
+Releases sayfasından en son sürümü indirin
+İndirdiğiniz Translator.exe dosyasını çift tıklayarak doğrudan çalıştırabilirsiniz
+İsterseniz dosyayı başlangıç klasörünüze ekleyerek bilgisayarınız her açıldığında otomatik başlatabilirsiniz
+Exe dosyası, tüm bağımlılıkları içinde barındırır ve Python kurulumu gerektirmez.
+
+2. Kaynak Kod ile Kurulum
+Geliştiriciler ve kodu özelleştirmek isteyenler için kaynak kodu kullanabilirsiniz:
+
+Yukarıda belirtilen kurulum adımlarını takip edin
+translate.py dosyasını herhangi bir kod editörüyle açarak kendi ihtiyaçlarınıza göre düzenleyebilirsiniz:
+Desteklenen dilleri artırabilir/azaltabilir
+Arayüz tasarımını değiştirebilir
+Kısayol tuşlarını özelleştirebilir
+Çeviri API'sini değiştirebilirsiniz
+Kaynak kodu düzenleyerek, uygulamayı tamamen kendi ihtiyaçlarınıza göre uyarlayabilirsiniz.
+
+Özelleştirme İpuçları
+Kaynak kodunu düzenlerken faydalı olabilecek bazı noktalar:
+
+Dil desteği eklemek için: supported_languages sözlüğünü düzenleyin
+Farklı kısayol tuş kombinasyonları için: keyboard.add_hotkey() fonksiyonunu değiştirin
+Farklı bir çeviri API'si kullanmak için: translate_text() fonksiyonunu güncelleyin
+
 ## Kurulum
 
 ### Gereksinimler
